@@ -6,15 +6,33 @@
 
 - 消化道肿瘤病种复杂且诊疗路径长
 - 临床标准需要对齐指南与专家共识
-- 使用场景包括预问诊、MDT会诊和随访
+- 使用场景包括预问诊、门诊病历、影像梳理、MDT会诊和随访
 
 ## 目录说明
 
-- `contracts/` 保存交换数据的结构约定。
-- `fixtures/` 提供去标识的领域样例。
-- 源码目录提供资料读取与健康检查入口。
-- `tests/` 核对领域资料能够被稳定载入。
+- `contracts/` 保存交换数据的结构约定：
+  - `context.schema.json`：领域上下文；
+  - `decision-point.schema.json`：临床决策点（版本序列、证据/病例关联、少数意见、盲审评签、病例授权）；
+  - `validation-run.schema.json`：模型验证运行（冻结题集、评分规则、重跑血缘、作废追溯）。
+- `fixtures/` 提供去标识的领域样例（均为虚构数据）。
+- `src/`：
+  - `schema-check.js` 零依赖契约校验器；
+  - `catalog.js` 提供各资料的载入并强制契约校验；
+  - `governance.js` 跨文档治理规则与追溯查询（版本链、引用完整性、重跑一致性、撤回影响、结论追溯）；
+  - `server.js` 提供 HTTP 入口。
+- `test/` 核对领域资料能够被稳定载入，并验证治理规则。
+- `docs/governance.md` 记录治理规则及其在样例中的体现。
+
+## 服务端点
+
+启动 `node src/server.js`（监听 127.0.0.1:8000）：
+
+- `GET /health`：健康检查；
+- `GET /context`、`/decision-points`、`/validation-runs`：载入对应资料；
+- `GET /impact?evidence=EV-...`：指南撤回后定位受影响的题目与运行；
+- `GET /trace?run=RUN-...&decision=CDP-...`：从结论追溯当时有效的病例、证据、规则与审签。
 
 ## 本地检查
 
-运行 `npm test` 可以检查当前资料与服务入口。
+运行 `npm test` 可以检查当前资料与服务入口。13 项测试覆盖契约合规、版本只增不改、
+少数意见保留、盲审与利益冲突、授权/再识别风险、重跑不换题、撤回定位与结论追溯。

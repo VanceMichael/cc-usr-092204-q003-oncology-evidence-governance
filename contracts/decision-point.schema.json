@@ -1,0 +1,350 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "临床决策点基准文档",
+  "description": "面向预问诊、门诊病历、影像梳理、MDT会诊与随访场景的循证基准。决策点按版本追加，历史版本及其依据永不覆盖。",
+  "type": "object",
+  "required": [
+    "doc",
+    "note",
+    "case_consents",
+    "evidence_catalog",
+    "decision_points"
+  ],
+  "properties": {
+    "doc": {
+      "type": "string",
+      "description": "文档标识"
+    },
+    "note": {
+      "type": "string",
+      "description": "数据性质声明，必须为脱敏虚构样例"
+    },
+    "case_consents": {
+      "type": "array",
+      "minItems": 1,
+      "description": "病例贡献者授权登记，决策点只能引用此处登记的授权",
+      "items": {
+        "type": "object",
+        "required": [
+          "case_ref",
+          "contributor",
+          "deidentification",
+          "rare_combination",
+          "reidentification_risk",
+          "authorized_scopes",
+          "revocable"
+        ],
+        "properties": {
+          "case_ref": {
+            "type": "string",
+            "pattern": "^CASE-[A-Z0-9-]+$",
+            "description": "脱敏病例片段标识"
+          },
+          "contributor": {
+            "type": "string",
+            "description": "贡献方（机构或科室级，不含个人身份信息）"
+          },
+          "deidentification": {
+            "type": "string",
+            "enum": [
+              "去标识化",
+              "匿名化"
+            ],
+            "description": "脱敏方式"
+          },
+          "rare_combination": {
+            "type": "boolean",
+            "description": "是否含稀有特征组合（病种×分期×合并症等）"
+          },
+          "reidentification_risk": {
+            "type": "string",
+            "enum": [
+              "低",
+              "中",
+              "高"
+            ],
+            "description": "再识别风险评估结论"
+          },
+          "authorized_scopes": {
+            "type": "array",
+            "minItems": 1,
+            "description": "授权使用范围",
+            "items": {
+              "type": "string",
+              "enum": [
+                "基准建设",
+                "模型验证",
+                "教学展示",
+                "统计分析"
+              ]
+            }
+          },
+          "revocable": {
+            "type": "boolean",
+            "description": "贡献者是否保留撤回授权的权利"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "evidence_catalog": {
+      "type": "array",
+      "minItems": 1,
+      "description": "指南条款与专家共识目录，含生效与失效日期；撤回只标记不删除",
+      "items": {
+        "type": "object",
+        "required": [
+          "evidence_id",
+          "kind",
+          "source",
+          "statement",
+          "effective_from",
+          "effective_until",
+          "status"
+        ],
+        "properties": {
+          "evidence_id": {
+            "type": "string",
+            "pattern": "^EV-[A-Z0-9-]+$",
+            "description": "证据条目标识"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "指南条款",
+              "专家共识"
+            ]
+          },
+          "source": {
+            "type": "string",
+            "description": "出处（指南/共识名称与版本）"
+          },
+          "statement": {
+            "type": "string",
+            "description": "条款内容摘要"
+          },
+          "effective_from": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "description": "生效日期"
+          },
+          "effective_until": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "description": "失效日期，null 表示仍有效"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "有效",
+              "已撤回",
+              "已过期"
+            ]
+          },
+          "withdrawn_on": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "description": "撤回日期，仅 status 为已撤回时填写"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "decision_points": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "decision_id",
+          "scenario",
+          "title",
+          "current_version",
+          "versions"
+        ],
+        "properties": {
+          "decision_id": {
+            "type": "string",
+            "pattern": "^CDP-[A-Z0-9-]+$"
+          },
+          "scenario": {
+            "type": "string",
+            "enum": [
+              "预问诊",
+              "门诊病历",
+              "影像梳理",
+              "MDT会诊",
+              "随访"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "current_version": {
+            "type": "string",
+            "pattern": "^v\\d+$",
+            "description": "当前生效版本号，必须等于 versions 中最大版本"
+          },
+          "versions": {
+            "type": "array",
+            "minItems": 1,
+            "description": "版本序列，只增不改；每个版本完整保留当时依据",
+            "items": {
+              "type": "object",
+              "required": [
+                "version",
+                "status",
+                "applicable_population",
+                "case_refs",
+                "evidence_refs",
+                "options",
+                "answer",
+                "minority_opinions",
+                "change_reason",
+                "review"
+              ],
+              "properties": {
+                "version": {
+                  "type": "string",
+                  "pattern": "^v\\d+$"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "生效",
+                    "被取代",
+                    "已废止"
+                  ]
+                },
+                "applicable_population": {
+                  "type": "string",
+                  "description": "适用人群（病种、分期、生物标志物等限定）"
+                },
+                "case_refs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "description": "引用的脱敏病例片段，须在 case_consents 登记且授权范围覆盖用途",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^CASE-[A-Z0-9-]+$"
+                  }
+                },
+                "evidence_refs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "description": "引用的指南条款与专家共识，须在 evidence_catalog 登记",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^EV-[A-Z0-9-]+$"
+                  }
+                },
+                "options": {
+                  "type": "array",
+                  "minItems": 2,
+                  "description": "候选决策",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "answer": {
+                  "type": "string",
+                  "description": "该版本认定答案，须为 options 之一"
+                },
+                "minority_opinions": {
+                  "type": "array",
+                  "description": "评审中未采纳的少数意见，与主结论一并保留",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "position",
+                      "held_by",
+                      "rationale"
+                    ],
+                    "properties": {
+                      "position": {
+                        "type": "string",
+                        "description": "少数派主张"
+                      },
+                      "held_by": {
+                        "type": "string",
+                        "description": "持该意见的评审人（编号）"
+                      },
+                      "rationale": {
+                        "type": "string",
+                        "description": "理由"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "change_reason": {
+                  "type": "string",
+                  "description": "本版本相对上一版本的变更理由；首版本填建档理由"
+                },
+                "review": {
+                  "type": "object",
+                  "required": [
+                    "blind",
+                    "reviewers",
+                    "conflicts_declared"
+                  ],
+                  "properties": {
+                    "blind": {
+                      "type": "boolean",
+                      "description": "是否盲审（评审人不知病例贡献方与模型身份）"
+                    },
+                    "reviewers": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "reviewer_id",
+                          "decision",
+                          "conflict_of_interest"
+                        ],
+                        "properties": {
+                          "reviewer_id": {
+                            "type": "string",
+                            "description": "评审人编号，不出现真实姓名"
+                          },
+                          "decision": {
+                            "type": "string",
+                            "enum": [
+                              "通过",
+                              "反对",
+                              "回避"
+                            ]
+                          },
+                          "conflict_of_interest": {
+                            "type": "string",
+                            "description": "利益冲突申报；无则填“无”"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "conflicts_declared": {
+                      "type": "boolean",
+                      "description": "是否已完成全员利益冲突申报"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,224 @@
+{
+  "doc": "DECISION-POINTS-DEMO-001",
+  "note": "本文件全部为虚构演示数据，不包含任何真实患者信息；证据编号与条款表述仅用于说明结构。",
+  "case_consents": [
+    {
+      "case_ref": "CASE-ESO-0031",
+      "contributor": "某三甲医院胸外科（脱敏）",
+      "deidentification": "去标识化",
+      "rare_combination": false,
+      "reidentification_risk": "低",
+      "authorized_scopes": [
+        "基准建设",
+        "模型验证",
+        "教学展示"
+      ],
+      "revocable": true
+    },
+    {
+      "case_ref": "CASE-REC-0188",
+      "contributor": "某肿瘤中心结直肠外科（脱敏）",
+      "deidentification": "匿名化",
+      "rare_combination": true,
+      "reidentification_risk": "高",
+      "authorized_scopes": [
+        "基准建设",
+        "模型验证"
+      ],
+      "revocable": true
+    }
+  ],
+  "evidence_catalog": [
+    {
+      "evidence_id": "EV-CSCO-ESO-2023-A1",
+      "kind": "指南条款",
+      "source": "CSCO食管癌诊疗指南2023（演示编号）",
+      "statement": "不可切除局部晚期或转移性食管鳞癌一线推荐含铂双药化疗。",
+      "effective_from": "2023-04-01",
+      "effective_until": "2025-12-31",
+      "status": "已过期",
+      "withdrawn_on": null
+    },
+    {
+      "evidence_id": "EV-CSCO-ESO-2026-A1",
+      "kind": "指南条款",
+      "source": "CSCO食管癌诊疗指南2026（演示编号）",
+      "statement": "不可切除局部晚期或转移性食管鳞癌一线推荐免疫检查点抑制剂联合含铂双药化疗。",
+      "effective_from": "2026-01-01",
+      "effective_until": null,
+      "status": "有效",
+      "withdrawn_on": null
+    },
+    {
+      "evidence_id": "EV-CONS-ESO-2024-07",
+      "kind": "专家共识",
+      "source": "晚期食管癌免疫治疗专家共识2024（演示编号）",
+      "statement": "免疫联合化疗一线人群选择应结合PD-L1表达与患者耐受性综合评估。",
+      "effective_from": "2024-06-01",
+      "effective_until": "2027-05-31",
+      "status": "有效",
+      "withdrawn_on": null
+    },
+    {
+      "evidence_id": "EV-NCCN-REC-2024-F3",
+      "kind": "指南条款",
+      "source": "NCCN直肠癌指南2024随访章节（演示编号）",
+      "statement": "等待观察（W&W）患者前3年每3-4个月行直肠指检、MRI与内镜评估。",
+      "effective_from": "2024-03-01",
+      "effective_until": "2026-02-10",
+      "status": "已撤回",
+      "withdrawn_on": "2026-02-10"
+    },
+    {
+      "evidence_id": "EV-CONS-REC-2023-11",
+      "kind": "专家共识",
+      "source": "直肠癌新辅助治疗后随访专家共识2023（演示编号）",
+      "statement": "临床完全缓解选择W&W者应由专病团队执行强化随访并记录再生长事件。",
+      "effective_from": "2023-09-01",
+      "effective_until": "2027-08-31",
+      "status": "有效",
+      "withdrawn_on": null
+    }
+  ],
+  "decision_points": [
+    {
+      "decision_id": "CDP-ESO-001",
+      "scenario": "MDT会诊",
+      "title": "不可切除局部晚期食管鳞癌一线系统治疗方案选择",
+      "current_version": "v2",
+      "versions": [
+        {
+          "version": "v1",
+          "status": "被取代",
+          "applicable_population": "不可切除局部晚期或转移性食管鳞状细胞癌成人，ECOG 0-1，未接受系统治疗",
+          "case_refs": [
+            "CASE-ESO-0031"
+          ],
+          "evidence_refs": [
+            "EV-CSCO-ESO-2023-A1"
+          ],
+          "options": [
+            "含铂双药化疗",
+            "免疫检查点抑制剂联合含铂双药化疗",
+            "最佳支持治疗"
+          ],
+          "answer": "含铂双药化疗",
+          "minority_opinions": [],
+          "change_reason": "初始建档：依据2023版指南条款，当时免疫联合方案尚未进入一线推荐。",
+          "review": {
+            "blind": true,
+            "reviewers": [
+              {
+                "reviewer_id": "EXP-01",
+                "decision": "通过",
+                "conflict_of_interest": "无"
+              },
+              {
+                "reviewer_id": "EXP-02",
+                "decision": "通过",
+                "conflict_of_interest": "无"
+              }
+            ],
+            "conflicts_declared": true
+          }
+        },
+        {
+          "version": "v2",
+          "status": "生效",
+          "applicable_population": "不可切除局部晚期或转移性食管鳞状细胞癌成人，ECOG 0-1，未接受系统治疗",
+          "case_refs": [
+            "CASE-ESO-0031"
+          ],
+          "evidence_refs": [
+            "EV-CSCO-ESO-2026-A1",
+            "EV-CONS-ESO-2024-07"
+          ],
+          "options": [
+            "含铂双药化疗",
+            "免疫检查点抑制剂联合含铂双药化疗",
+            "最佳支持治疗"
+          ],
+          "answer": "免疫检查点抑制剂联合含铂双药化疗",
+          "minority_opinions": [
+            {
+              "position": "PD-L1低表达亚组常规联合免疫证据尚不充分，建议按单纯化疗处理并密切评估",
+              "held_by": "EXP-04",
+              "rationale": "该亚组获益数据主要来自探索性分析，需等待前瞻性验证；保留此意见供证据更新时复核。"
+            }
+          ],
+          "change_reason": "2026版指南更新一线推荐；v1答案在其证据有效期内曾为合理结论，按只增不改原则新增版本而非改写v1。",
+          "review": {
+            "blind": true,
+            "reviewers": [
+              {
+                "reviewer_id": "EXP-01",
+                "decision": "通过",
+                "conflict_of_interest": "无"
+              },
+              {
+                "reviewer_id": "EXP-03",
+                "decision": "通过",
+                "conflict_of_interest": "无"
+              },
+              {
+                "reviewer_id": "EXP-04",
+                "decision": "反对",
+                "conflict_of_interest": "无"
+              },
+              {
+                "reviewer_id": "EXP-07",
+                "decision": "回避",
+                "conflict_of_interest": "与病例贡献科室存在在研合作，申报后回避"
+              }
+            ],
+            "conflicts_declared": true
+          }
+        }
+      ]
+    },
+    {
+      "decision_id": "CDP-REC-002",
+      "scenario": "随访",
+      "title": "局部进展期直肠癌新辅助放化疗后临床完全缓解的W&W随访强度",
+      "current_version": "v1",
+      "versions": [
+        {
+          "version": "v1",
+          "status": "生效",
+          "applicable_population": "局部进展期直肠癌新辅助放化疗后评估为临床完全缓解、选择等待观察策略的成人",
+          "case_refs": [
+            "CASE-REC-0188"
+          ],
+          "evidence_refs": [
+            "EV-NCCN-REC-2024-F3",
+            "EV-CONS-REC-2023-11"
+          ],
+          "options": [
+            "前3年每3-4个月强化随访",
+            "前3年每6个月常规随访",
+            "每年一次随访"
+          ],
+          "answer": "前3年每3-4个月强化随访",
+          "minority_opinions": [],
+          "change_reason": "初始建档。病例含罕见合并症组合，再识别风险评估为高，授权范围不含教学展示；引用条款EV-NCCN-REC-2024-F3已被撤回，随访频次结论存在证据缺口，待修订版本补充新证据。",
+          "review": {
+            "blind": true,
+            "reviewers": [
+              {
+                "reviewer_id": "EXP-02",
+                "decision": "通过",
+                "conflict_of_interest": "无"
+              },
+              {
+                "reviewer_id": "EXP-05",
+                "decision": "通过",
+                "conflict_of_interest": "无"
+              }
+            ],
+            "conflicts_declared": true
+          }
+        }
+      ]
+    }
+  ]
+}

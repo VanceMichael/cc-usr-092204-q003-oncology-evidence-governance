@@ -1,0 +1,140 @@
+{
+  "doc": "VALIDATION-RUNS-DEMO-001",
+  "note": "本文件全部为虚构演示数据；模型名称为占位符，结果仅用于说明冻结、重跑与作废追溯结构。",
+  "runs": [
+    {
+      "run_id": "RUN-2026-0114",
+      "model": "onco-assistant 3.1（演示占位）",
+      "frozen_at": "2026-01-15",
+      "frozen_item_set": [
+        {
+          "decision_id": "CDP-ESO-001",
+          "version": "v2"
+        }
+      ],
+      "scoring_rules": {
+        "version": "SR-1.3",
+        "pass_threshold": 0.8,
+        "dimensions": [
+          "结论准确性",
+          "证据一致性",
+          "少数意见识别",
+          "失效证据规避"
+        ]
+      },
+      "status": "通过",
+      "rerun_of": null,
+      "invalidation": null,
+      "results": [
+        {
+          "decision_id": "CDP-ESO-001",
+          "version": "v2",
+          "model_answer": "免疫检查点抑制剂联合含铂双药化疗",
+          "expected_answer": "免疫检查点抑制剂联合含铂双药化疗",
+          "correct": true,
+          "explanation": "结论与2026版指南条款一致；模型未提及PD-L1低表达亚组争议，少数意见识别维度记为部分覆盖，属已知能力边界。"
+        }
+      ]
+    },
+    {
+      "run_id": "RUN-2026-0131",
+      "model": "onco-assistant 3.1（演示占位）",
+      "frozen_at": "2026-01-20",
+      "frozen_item_set": [
+        {
+          "decision_id": "CDP-ESO-001",
+          "version": "v2"
+        },
+        {
+          "decision_id": "CDP-REC-002",
+          "version": "v1"
+        }
+      ],
+      "scoring_rules": {
+        "version": "SR-1.3",
+        "pass_threshold": 0.8,
+        "dimensions": [
+          "结论准确性",
+          "证据一致性",
+          "少数意见识别",
+          "失效证据规避"
+        ]
+      },
+      "status": "未通过",
+      "rerun_of": null,
+      "invalidation": null,
+      "results": [
+        {
+          "decision_id": "CDP-ESO-001",
+          "version": "v2",
+          "model_answer": "免疫检查点抑制剂联合含铂双药化疗",
+          "expected_answer": "免疫检查点抑制剂联合含铂双药化疗",
+          "correct": true,
+          "explanation": "结论正确。"
+        },
+        {
+          "decision_id": "CDP-REC-002",
+          "version": "v1",
+          "model_answer": "前3年每6个月常规随访",
+          "expected_answer": "前3年每3-4个月强化随访",
+          "correct": false,
+          "explanation": "模型将W&W人群按常规术后随访处理，未识别强化随访要求，暴露随访场景能力边界。"
+        }
+      ]
+    },
+    {
+      "run_id": "RUN-2026-0132",
+      "model": "onco-assistant 3.1（演示占位）",
+      "frozen_at": "2026-01-20",
+      "frozen_item_set": [
+        {
+          "decision_id": "CDP-ESO-001",
+          "version": "v2"
+        },
+        {
+          "decision_id": "CDP-REC-002",
+          "version": "v1"
+        }
+      ],
+      "scoring_rules": {
+        "version": "SR-1.3",
+        "pass_threshold": 0.8,
+        "dimensions": [
+          "结论准确性",
+          "证据一致性",
+          "少数意见识别",
+          "失效证据规避"
+        ]
+      },
+      "status": "已作废",
+      "rerun_of": "RUN-2026-0131",
+      "invalidation": {
+        "reason": "冻结题集中CDP-REC-002 v1引用的指南条款EV-NCCN-REC-2024-F3于2026-02-10被撤回，该题结论失去关键证据支撑，本次运行结果整体作废并保留备查。",
+        "trigger_evidence": [
+          "EV-NCCN-REC-2024-F3"
+        ],
+        "affected_items": [
+          "CDP-REC-002"
+        ]
+      },
+      "results": [
+        {
+          "decision_id": "CDP-ESO-001",
+          "version": "v2",
+          "model_answer": "免疫检查点抑制剂联合含铂双药化疗",
+          "expected_answer": "免疫检查点抑制剂联合含铂双药化疗",
+          "correct": true,
+          "explanation": "结论正确。"
+        },
+        {
+          "decision_id": "CDP-REC-002",
+          "version": "v1",
+          "model_answer": "前3年每3-4个月强化随访",
+          "expected_answer": "前3年每3-4个月强化随访",
+          "correct": true,
+          "explanation": "重跑复用RUN-2026-0131同一冻结题集与评分规则，未挑换病例；后因所依据指南条款撤回，该结果不再作为能力结论使用。"
+        }
+      ]
+    }
+  ]
+}
