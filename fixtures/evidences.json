@@ -1,0 +1,96 @@
+{
+  "evidences": [
+    {
+      "id": "EV-G-001",
+      "kind": "guideline_clause",
+      "title": "局部进展期直肠癌新辅助同步放化疗条款",
+      "source": "CSCO 直肠癌诊疗指南 2023 版 · 新辅助治疗章节",
+      "population": "cT3-4 和/或 N+ 局部进展期直肠腺癌",
+      "effective_from": "2023-04-01",
+      "expires_at": "2024-04-30",
+      "status": "expired"
+    },
+    {
+      "id": "EV-G-002",
+      "kind": "guideline_clause",
+      "title": "高危局部进展期直肠癌全程新辅助治疗（TNT）条款",
+      "source": "CSCO 直肠癌诊疗指南 2024 版 · 新辅助治疗章节",
+      "population": "高危 II/III 期直肠腺癌（MRF+、N2、EMVI+ 等）",
+      "effective_from": "2024-05-01",
+      "expires_at": null,
+      "status": "active"
+    },
+    {
+      "id": "EV-G-010",
+      "kind": "guideline_clause",
+      "title": "结直肠癌根治术后每 3 个月高频随访条款",
+      "source": "某省肿瘤随访共识 2022 版 · 随访频率条款",
+      "population": "根治术后 I-III 期结直肠癌",
+      "effective_from": "2022-03-01",
+      "expires_at": "2025-02-15",
+      "status": "retracted",
+      "retracted_at": "2025-02-15",
+      "retraction_reason": "复查队列证据显示高频影像随访无生存获益且增加辐射暴露，条款撤回"
+    },
+    {
+      "id": "EV-G-011",
+      "kind": "guideline_clause",
+      "title": "结直肠癌根治术后分层随访频率条款",
+      "source": "全国肿瘤随访专家共识 2025 版 · 随访频率条款",
+      "population": "根治术后 I-III 期结直肠癌，按复发风险分层",
+      "effective_from": "2025-03-01",
+      "expires_at": null,
+      "status": "active"
+    },
+    {
+      "id": "EV-G-020",
+      "kind": "guideline_clause",
+      "title": "MSI-H/dMMR 晚期结直肠癌一线免疫治疗条款",
+      "source": "CSCO 结直肠癌诊疗指南 2024 版 · 晚期一线治疗",
+      "population": "不可切除或转移性 MSI-H/dMMR 结直肠癌",
+      "effective_from": "2024-05-01",
+      "expires_at": null,
+      "status": "active"
+    },
+    {
+      "id": "EV-C-101",
+      "kind": "expert_consensus",
+      "title": "直肠癌 TNT 模式多学科专家共识",
+      "source": "消化道肿瘤 MDT 专家组 2023 年度共识会议",
+      "population": "拟行新辅助治疗的局部进展期直肠癌",
+      "effective_from": "2023-11-01",
+      "expires_at": null,
+      "status": "active"
+    },
+    {
+      "id": "EV-CASE-C001",
+      "kind": "case_snippet",
+      "title": "MRF+ 直肠癌 TNT 后病理完全缓解片段",
+      "source": "CASE-C001",
+      "population": "MRF+、N2 中段直肠腺癌",
+      "effective_from": "2024-01-10",
+      "expires_at": null,
+      "status": "active"
+    },
+    {
+      "id": "EV-CASE-C002",
+      "kind": "case_snippet",
+      "title": "标准同步放化疗后 TME 手术片段",
+      "source": "CASE-C002",
+      "population": "cT3N+ 低位直肠腺癌",
+      "effective_from": "2023-06-20",
+      "expires_at": null,
+      "status": "active"
+    },
+    {
+      "id": "EV-CASE-C003",
+      "kind": "case_snippet",
+      "title": "MSI-H 转移性肠癌一线免疫治疗片段",
+      "source": "CASE-C003",
+      "population": "MSI-H 转移性右半结肠癌",
+      "effective_from": "2024-08-01",
+      "expires_at": null,
+      "status": "active"
+    }
+  ]
+}

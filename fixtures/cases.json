@@ -1,0 +1,87 @@
+{
+  "cases": [
+    {
+      "case_id": "CASE-C001",
+      "contributor": "协作单位甲 · 直肠外科",
+      "consent": {
+        "scope": ["mdt", "benchmark_validation"],
+        "granted_at": "2024-01-05",
+        "expires_at": "2027-01-05",
+        "revocable": true,
+        "withdrawn": false
+      },
+      "deidentification": {
+        "level": "L3",
+        "method": "移除直接标识符，手术日期泛化到月份，术者信息删除"
+      },
+      "reidentification_risk": {
+        "rare_combination": true,
+        "risk_level": "high",
+        "assessed_by": "SIGN-201",
+        "assessed_at": "2024-01-08",
+        "mitigation": "MRF+/N2/中段直肠组合在本院年内不足 5 例，对病理分期再做区间泛化并与同病种片段合并发布，单条不得单独导出"
+      },
+      "blind_review": {
+        "reviewers": ["REV-301", "REV-007"],
+        "conflicts_of_interest": [
+          {
+            "reviewer": "REV-007",
+            "conflict": "该专家所在团队为本病例手术实施方",
+            "action": "recused"
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "CASE-C002",
+      "contributor": "协作单位乙 · 放疗科",
+      "consent": {
+        "scope": ["mdt"],
+        "granted_at": "2023-06-10",
+        "expires_at": null,
+        "revocable": true,
+        "withdrawn": true
+      },
+      "deidentification": {
+        "level": "L2",
+        "method": "移除姓名、住院号，影像编号替换"
+      },
+      "reidentification_risk": {
+        "rare_combination": false,
+        "risk_level": "low",
+        "assessed_by": "SIGN-202",
+        "assessed_at": "2023-06-15"
+      },
+      "blind_review": {
+        "reviewers": ["REV-302"],
+        "conflicts_of_interest": []
+      }
+    },
+    {
+      "case_id": "CASE-C003",
+      "contributor": "协作单位甲 · 肿瘤内科",
+      "consent": {
+        "scope": ["outpatient_record", "benchmark_validation"],
+        "granted_at": "2024-07-20",
+        "expires_at": "2027-07-20",
+        "revocable": true,
+        "withdrawn": false
+      },
+      "deidentification": {
+        "level": "L3",
+        "method": "移除直接标识符，基因检测机构与送检日期泛化"
+      },
+      "reidentification_risk": {
+        "rare_combination": true,
+        "risk_level": "medium",
+        "assessed_by": "SIGN-203",
+        "assessed_at": "2024-07-25",
+        "mitigation": "MSI-H 右半结肠合并 BRAF 野生型组合较少见，年龄泛化到 5 岁区间，与同分型至少 3 例聚合后使用"
+      },
+      "blind_review": {
+        "reviewers": ["REV-303"],
+        "conflicts_of_interest": []
+      }
+    }
+  ]
+}

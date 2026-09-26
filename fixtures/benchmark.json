@@ -1,0 +1,79 @@
+{
+  "freezes": [
+    {
+      "freeze_id": "FRZ-2024-06",
+      "created_at": "2024-06-01",
+      "created_by": "研究管理者-RM-01",
+      "items": [
+        { "decision_point_id": "DP-RECTUM-01", "version": 2 },
+        { "decision_point_id": "DP-FU-03", "version": 1 }
+      ],
+      "scoring_rules": {
+        "rule_set_id": "RULE-GI-V3",
+        "pass_threshold": 0.8,
+        "dimensions": ["决策正确性", "依据时效性", "适用人群匹配", "少数意见识别"]
+      },
+      "hash": "sha256:7d2f0a91b4c6e8a3f5c1d9e0b2a7f4c8d6e1a3b5c7f9d0e2a4b6c8d0f2a4b6c8"
+    },
+    {
+      "freeze_id": "FRZ-2025-03",
+      "created_at": "2025-03-10",
+      "created_by": "研究管理者-RM-01",
+      "items": [
+        { "decision_point_id": "DP-RECTUM-01", "version": 2 },
+        { "decision_point_id": "DP-FU-03", "version": 2 },
+        { "decision_point_id": "DP-CRC-05", "version": 1 }
+      ],
+      "scoring_rules": {
+        "rule_set_id": "RULE-GI-V4",
+        "pass_threshold": 0.8,
+        "dimensions": ["决策正确性", "依据时效性", "适用人群匹配", "少数意见识别", "证据缺口标注"]
+      },
+      "hash": "sha256:1a3b5c7d9e0f2a4b6c8d0e2f4a6b8c0d2e4f6a8b0c2d4e6f8a0b2c4d6e8f0a2b"
+    }
+  ],
+  "runs": [
+    {
+      "run_id": "RUN-2024-0610",
+      "freeze_id": "FRZ-2024-06",
+      "model": "onco-assistant v1.4",
+      "parent_run_id": null,
+      "started_at": "2024-06-10",
+      "outcome": "failed",
+      "capability_boundaries": [
+        "对 TNT 与同步放化疗的高危人群分层判断不稳定"
+      ],
+      "evidence_gaps": [
+        "缺少 EMVI+ 亚组的国内真实世界数据"
+      ]
+    },
+    {
+      "run_id": "RUN-2024-0701",
+      "freeze_id": "FRZ-2024-06",
+      "model": "onco-assistant v1.4-hotfix1",
+      "parent_run_id": "RUN-2024-0610",
+      "started_at": "2024-07-01",
+      "outcome": "passed",
+      "capability_boundaries": [
+        "TNT 高危分层判断已达标；随访频率题仅能复述条款，无法解释风险分层"
+      ],
+      "evidence_gaps": [
+        "缺少 EMVI+ 亚组的国内真实世界数据"
+      ]
+    },
+    {
+      "run_id": "RUN-2025-0315",
+      "freeze_id": "FRZ-2025-03",
+      "model": "onco-assistant v2.0",
+      "parent_run_id": null,
+      "started_at": "2025-03-15",
+      "outcome": "passed",
+      "capability_boundaries": [
+        "分层随访结论可解释；MSI-H 一线免疫治疗在合并自身免疫病人群证据不足"
+      ],
+      "evidence_gaps": [
+        "MSI-H 合并自身免疫病患者免疫治疗安全性证据缺口"
+      ]
+    }
+  ]
+}

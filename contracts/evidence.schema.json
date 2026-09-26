@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "循证依据",
+  "description": "指南条款、专家共识与脱敏病例片段的统一描述。依据只标记失效或撤回，从不物理删除，以保证历史结论可追溯。",
+  "type": "object",
+  "required": [
+    "id",
+    "kind",
+    "title",
+    "source",
+    "population",
+    "effective_from",
+    "expires_at",
+    "status"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "依据唯一标识"
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["guideline_clause", "expert_consensus", "case_snippet"],
+      "description": "依据类型：指南条款 / 专家共识 / 脱敏病例片段"
+    },
+    "title": {
+      "type": "string",
+      "description": "依据标题"
+    },
+    "source": {
+      "type": "string",
+      "description": "出处，如指南名称与条款号、共识会议、脱敏病例编号"
+    },
+    "population": {
+      "type": "string",
+      "description": "适用人群"
+    },
+    "effective_from": {
+      "type": "string",
+      "format": "date",
+      "description": "生效日期"
+    },
+    "expires_at": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "失效日期，null 表示长期有效"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "expired", "retracted"],
+      "description": "状态：有效 / 已失效 / 已撤回"
+    },
+    "retracted_at": {
+      "type": "string",
+      "format": "date",
+      "description": "撤回日期，仅 status 为 retracted 时填写"
+    },
+    "retraction_reason": {
+      "type": "string",
+      "description": "撤回理由，仅 status 为 retracted 时填写"
+    }
+  },
+  "additionalProperties": false
+}

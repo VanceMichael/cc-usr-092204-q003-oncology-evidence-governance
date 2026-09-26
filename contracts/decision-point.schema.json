@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "临床决策点",
+  "description": "一个临床决策点及其全部历史版本。修订只新增版本，不覆盖既往依据；争议结论的少数意见随版本保留。",
+  "type": "object",
+  "required": [
+    "id",
+    "scenario",
+    "title",
+    "population",
+    "status",
+    "versions"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "决策点唯一标识"
+    },
+    "scenario": {
+      "type": "string",
+      "enum": ["pre_consultation", "outpatient_record", "imaging_review", "mdt", "follow_up"],
+      "description": "使用场景：预问诊 / 门诊病历 / 影像梳理 / MDT会诊 / 随访"
+    },
+    "title": {
+      "type": "string",
+      "description": "决策点标题"
+    },
+    "population": {
+      "type": "string",
+      "description": "适用人群"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "retired"],
+      "description": "决策点状态"
+    },
+    "versions": {
+      "type": "array",
+      "minItems": 1,
+      "description": "版本序列，只允许追加，version 严格递增",
+      "items": {
+        "type": "object",
+        "required": [
+          "version",
+          "conclusion",
+          "minority_opinions",
+          "evidence_refs",
+          "effective_from",
+          "change_reason",
+          "signed_off_by",
+          "created_at"
+        ],
+        "properties": {
+          "version": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "版本号，从 1 起严格递增"
+          },
+          "conclusion": {
+            "type": "string",
+            "description": "本版本的结论"
+          },
+          "minority_opinions": {
+            "type": "array",
+            "description": "争议结论的少数意见，随版本保留",
+            "items": {
+              "type": "object",
+              "required": ["expert_role", "opinion"],
+              "properties": {
+                "expert_role": {
+                  "type": "string",
+                  "description": "持少数意见专家的学科角色（不记名）"
+                },
+                "opinion": {
+                  "type": "string",
+                  "description": "少数意见内容"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "evidence_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            },
+            "description": "引用的循证依据标识，必须能解析到依据登记册"
+          },
+          "effective_from": {
+            "type": "string",
+            "format": "date",
+            "description": "本版本生效日期"
+          },
+          "change_reason": {
+            "type": "string",
+            "description": "变更理由，新增版本时必填"
+          },
+          "signed_off_by": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            },
+            "description": "审签人标识，存在利益冲突的盲审专家不得出现在此"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date",
+            "description": "本版本创建日期"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

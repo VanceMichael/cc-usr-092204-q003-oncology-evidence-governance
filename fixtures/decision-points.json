@@ -1,0 +1,96 @@
+{
+  "decision_points": [
+    {
+      "id": "DP-RECTUM-01",
+      "scenario": "mdt",
+      "title": "局部进展期直肠癌新辅助治疗方案选择",
+      "population": "cT3-4 和/或 N+ 局部进展期直肠腺癌",
+      "status": "active",
+      "versions": [
+        {
+          "version": 1,
+          "conclusion": "推荐新辅助同步放化疗后行 TME 手术",
+          "minority_opinions": [
+            {
+              "expert_role": "肿瘤内科医师",
+              "opinion": "对 MRF+、N2 等高危患者，强化全身治疗可能优于单纯同步放化疗，建议小范围探索"
+            }
+          ],
+          "evidence_refs": ["EV-G-001", "EV-CASE-C002"],
+          "effective_from": "2023-06-01",
+          "change_reason": "决策点初版建立，对齐 2023 版指南",
+          "signed_off_by": ["SIGN-201", "SIGN-202"],
+          "created_at": "2023-06-01"
+        },
+        {
+          "version": 2,
+          "conclusion": "高危 II/III 期患者推荐全程新辅助治疗（TNT）后再评估手术",
+          "minority_opinions": [
+            {
+              "expert_role": "结直肠外科医师",
+              "opinion": "TNT 可能延迟根治性手术，对早期影像缓解明显的患者应保留直接手术选项"
+            }
+          ],
+          "evidence_refs": ["EV-G-002", "EV-C-101", "EV-CASE-C001"],
+          "effective_from": "2024-05-10",
+          "change_reason": "2024 版指南更新 TNT 适应症并新增专家共识与病例支持，原结论在 2023 人群仍成立故保留 v1",
+          "signed_off_by": ["SIGN-201", "SIGN-203"],
+          "created_at": "2024-05-10"
+        }
+      ]
+    },
+    {
+      "id": "DP-FU-03",
+      "scenario": "follow_up",
+      "title": "结直肠癌根治术后随访影像频率",
+      "population": "根治术后 I-III 期结直肠癌",
+      "status": "active",
+      "versions": [
+        {
+          "version": 1,
+          "conclusion": "术后两年内每 3 个月进行一次影像随访",
+          "minority_opinions": [],
+          "evidence_refs": ["EV-G-010"],
+          "effective_from": "2022-03-15",
+          "change_reason": "决策点初版建立",
+          "signed_off_by": ["SIGN-204"],
+          "created_at": "2022-03-15"
+        },
+        {
+          "version": 2,
+          "conclusion": "按复发风险分层随访：高危者术后两年内每 6 个月影像一次，低危者每年一次",
+          "minority_opinions": [
+            {
+              "expert_role": "随访护士",
+              "opinion": "低危人群年度影像可能漏诊间隔期复发，建议结合 CEA 动态监测加密随访"
+            }
+          ],
+          "evidence_refs": ["EV-G-011"],
+          "effective_from": "2025-03-05",
+          "change_reason": "依据 EV-G-010 撤回后发布的 2025 分层随访共识修订；v1 保留以解释既往验证结果",
+          "signed_off_by": ["SIGN-204", "SIGN-205"],
+          "created_at": "2025-03-05"
+        }
+      ]
+    },
+    {
+      "id": "DP-CRC-05",
+      "scenario": "outpatient_record",
+      "title": "MSI-H/dMMR 晚期结直肠癌一线方案",
+      "population": "不可切除或转移性 MSI-H/dMMR 结直肠癌",
+      "status": "active",
+      "versions": [
+        {
+          "version": 1,
+          "conclusion": "一线推荐 PD-1 免疫检查点抑制剂单药治疗",
+          "minority_opinions": [],
+          "evidence_refs": ["EV-G-020", "EV-CASE-C003"],
+          "effective_from": "2024-05-10",
+          "change_reason": "决策点初版建立",
+          "signed_off_by": ["SIGN-203", "SIGN-206"],
+          "created_at": "2024-05-10"
+        }
+      ]
+    }
+  ]
+}
